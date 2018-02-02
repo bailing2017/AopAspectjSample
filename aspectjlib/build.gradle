@@ -1,11 +1,11 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
-// aspectj configure start
+apply plugin: 'maven'
 import org.aspectj.bridge.IMessage
 import org.aspectj.bridge.MessageHandler
 import org.aspectj.tools.ajc.Main
-/*
-buildscript {
+
+/*buildscript {
     repositories {
         google()
         jcenter()
@@ -15,7 +15,7 @@ buildscript {
     }
 }*/
 final def log = project.logger
-final def variants = android.applicationVariants
+final def variants = android.libraryVariants
 variants.all { variant ->
     if (!variant.buildType.isDebuggable()) {
         log.debug("Skipping non-debuggable build type '${variant.buildType.name}'.")
@@ -55,17 +55,20 @@ variants.all { variant ->
         }
     }
 }
-// aspectj configure end
+
+
 android {
     compileSdkVersion 26
+
     defaultConfig {
-        applicationId "com.bailing.aopaspectjsample"
         minSdkVersion 14
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -74,22 +77,38 @@ android {
     }
 }
 
-repositories {
-    flatDir {
-        dirs 'libs'
-    }
-}
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-//    compile(name: 'aspectjlib', ext: 'aar')
+
     implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-    implementation project(':aspectjlib')
+    api 'org.aspectj:aspectjrt:1.8.11'
+}
 
-//    implementation ('com.bailing:aspectjlib:1.0.0-SNAPSHOT'){changing =true}
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            snapshotRepository(url: "http://localhost:8081/repository/maven-snapshots/") {
+                authentication(userName: "admin", password: "admin123")
+            }
+            repository(url: "http://localhost:8081/repository/maven-releases/") {
+                authentication(userName: "admin", password: "admin123")
+            }
+
+            pom.project {
+                // 快照版本，对应执行 snapshotRepository,否则执行 repository
+                version "1.0.0-SNAPSHOT"
+                artifactId "aspectjlib"
+                groupId "com.bailing"
+                packaging "aar"
+                description "aspectj lib"
+            }
+        }
+    }
+}
+artifacts {
+    archives file('aspectjlib.aar')
 }
