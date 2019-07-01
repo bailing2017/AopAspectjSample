@@ -8,5 +8,12 @@
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="控制1->3"
+        android:onClick="control"
+        android:layout_gravity="center"/>
     
 </FrameLayout>

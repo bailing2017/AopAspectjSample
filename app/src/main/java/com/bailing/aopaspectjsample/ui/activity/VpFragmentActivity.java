@@ -1,19 +1,24 @@
 package com.bailing.aopaspectjsample.ui.activity;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.view.ViewGroup;
+
 import com.bailing.aopaspectjsample.R;
 import com.bailing.aopaspectjsample.ui.base.BaseActivity;
 import com.bailing.aopaspectjsample.ui.fragment.vp.VpFragmentFirst;
 import com.bailing.aopaspectjsample.ui.fragment.vp.VpFragmentSecond;
 import com.bailing.aopaspectjsample.ui.fragment.vp.VpFragmentThird;
-import com.bailing.aspectjlib.page.DontAnalyticTrace;
+
 import java.util.ArrayList;
-@DontAnalyticTrace
+/*@DontAnalyticTrace*/
 public class VpFragmentActivity extends BaseActivity {
 
     private ViewPager mViewPager;
@@ -28,6 +33,14 @@ public class VpFragmentActivity extends BaseActivity {
         adapter.addFragment(new VpFragmentSecond());
         adapter.addFragment(new VpFragmentThird());
         mViewPager.setAdapter(adapter);
+    }
+
+    public void control(View view) {
+        if (mViewPager.getCurrentItem() ==0){
+            mViewPager.setCurrentItem(2);
+        }else if (mViewPager.getCurrentItem() == 2){
+            mViewPager.setCurrentItem(0);
+        }
     }
 
     public class CommonFragmentAdapter extends FragmentPagerAdapter {

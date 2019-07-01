@@ -17,12 +17,17 @@ import com.bailing.aopaspectjsample.ui.base.BaseFragment;
 
 public class VpFragmentThird extends BaseFragment {
 
+    @Override
+    protected String getTAG() {
+        return TAG;
+    }
     private final String TAG = "TabHostFragmentThird";
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
         @Nullable Bundle savedInstanceState) {
+        Log.e(getTAG(), "onCreateView\n");
         View view = inflater.inflate(R.layout.fragment_three, container, false);
         return view;
     }
@@ -35,6 +40,6 @@ public class VpFragmentThird extends BaseFragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        Log.e(TAG,"setUserVisibleHint");
+        Log.e(TAG,"setUserVisibleHint ==" + isVisibleToUser);
     }
 }

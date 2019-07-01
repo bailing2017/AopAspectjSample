@@ -18,11 +18,15 @@ import com.bailing.aopaspectjsample.ui.base.BaseFragment;
 public class TabHostFragmentThird extends BaseFragment {
 
     private final String TAG = "TabHostFragmentThird";
-
+    @Override
+    protected String getTAG() {
+        return TAG;
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
         @Nullable Bundle savedInstanceState) {
+        Log.e(getTAG(), "onCreateView\n");
         View view = inflater.inflate(R.layout.fragment_three, container, false);
         return view;
     }
@@ -37,7 +41,6 @@ public class TabHostFragmentThird extends BaseFragment {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        Log.e(TAG, "onHiddenChanged start");
-        Log.e(TAG, "onHiddenChanged end");
+        Log.e(TAG, "onHiddenChanged == " + hidden);
     }
 }

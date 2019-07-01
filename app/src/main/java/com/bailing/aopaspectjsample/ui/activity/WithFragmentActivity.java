@@ -1,15 +1,15 @@
 package com.bailing.aopaspectjsample.ui.activity;
 
 import android.os.Bundle;
+
 import com.bailing.aopaspectjsample.R;
 import com.bailing.aopaspectjsample.ui.base.BaseActivity;
 import com.bailing.aopaspectjsample.ui.fragment.SingleFragment;
-import com.bailing.aspectjlib.page.DontAnalyticTrace;
 
 /**
  * 带有Fragment的Activity
  */
-@DontAnalyticTrace
+//@DontAnalyticTrace
 public class WithFragmentActivity extends BaseActivity {
 
     @Override

@@ -17,7 +17,10 @@ import com.bailing.aopaspectjsample.ui.base.BaseFragment;
 public class SingleFragment extends BaseFragment {
 
     private final String TAG = "TabHostFragmentFirst";
-
+    @Override
+    protected String getTAG() {
+        return TAG;
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,

@@ -1,21 +1,21 @@
 package com.bailing.aopaspectjsample.ui.activity;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentTabHost;
 import android.view.View;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
+
 import com.bailing.aopaspectjsample.R;
 import com.bailing.aopaspectjsample.ui.base.BaseActivity;
 import com.bailing.aopaspectjsample.ui.fragment.tabhost.TabHostFragmentFirst;
 import com.bailing.aopaspectjsample.ui.fragment.tabhost.TabHostFragmentSecond;
 import com.bailing.aopaspectjsample.ui.fragment.tabhost.TabHostFragmentThird;
-import com.bailing.aopaspectjsample.widget.CusFragmentTabHost;
-import com.bailing.aspectjlib.page.DontAnalyticTrace;
-@DontAnalyticTrace
+//@DontAnalyticTrace
 public class FragmentTabHostActivity extends BaseActivity implements TabHost.OnTabChangeListener {
 
-    public CusFragmentTabHost tabHost;
+    public FragmentTabHost tabHost;
 
     public static final String HOME = "home";
     public static final String PRODUCT = "product";
